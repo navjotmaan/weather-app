@@ -1,6 +1,6 @@
 const input = document.querySelector('#weather');
 const button = document.querySelector('button');
-const container = document.querySelector('.container');
+const container = document.querySelector('.weather-data');
 
 async function getWeatherData(place) {
     try {
@@ -47,11 +47,13 @@ button.addEventListener('click', (e) => {
 
 function displayWeather(day) {
     const div = document.createElement('div');
-    div.textContent = `Date: ${day.date}
-            Temperature: ${day.temp}
-            Description: ${day.description}
-            Longitude: ${day.longitude}
-            Latitide: ${day.latitude}`;
+    div.classList.add('info-box');
+
+    div.innerHTML = `<p>Date: ${day.date}</p>
+                    <p>Temperature: ${day.temp}
+                    <p>Description: ${day.description}</p>
+                    <p>Longitude: ${day.longitude}</p>
+                    <p>Latitide: ${day.latitude}</p>`;
 
     container.appendChild(div);
 }
