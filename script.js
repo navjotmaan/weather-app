@@ -1,5 +1,6 @@
 const input = document.querySelector('#weather');
 const button = document.querySelector('button');
+const container = document.querySelector('.container');
 
 async function getWeatherData(place) {
     try {
@@ -8,8 +9,25 @@ async function getWeatherData(place) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
         const data = await response.json();
-        console.log(data);
+
+        const selectedData = data.days.slice(0, 3)
+            .map(day => ({
+                date: day.datetime,
+                temp: day.temp,
+                description: day.description,
+                longitude: data.longitude, 
+                latitude: data.latitude
+        }));
+
+        console.log(selectedData);
+
+        selectedData.forEach(day => {
+            displayWeather(day);
+            console.log(day);
+        });
+        
 
     } catch (error) {
         console.error('weather fetching:', error);
@@ -27,3 +45,13 @@ button.addEventListener('click', (e) => {
     }
 });
 
+function displayWeather(day) {
+    const div = document.createElement('div');
+    div.textContent = `Date: ${day.date}
+            Temperature: ${day.temp}
+            Description: ${day.description}
+            Longitude: ${day.longitude}
+            Latitide: ${day.latitude}`;
+
+    container.appendChild(div);
+}
