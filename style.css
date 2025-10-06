@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+}
+
+.weather-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    height: 80vh;
+    margin: 20px;
+}
+
+.info-box {
+    background-color: rgb(240, 197, 103);
+    border-radius: 20px;
+    padding: 20px;
+}
