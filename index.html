@@ -9,10 +9,14 @@
 <body>
 
     <div class="container">
-        <form>
-            <input name="weather" id="weather" placeholder="Enter location">
-            <button>Search</button>
-        </form>
+        <div class="toggle-area">
+            <form>
+                <input name="weather" id="weather" placeholder="Enter location">
+                <button id="search">Search</button>
+            </form>
+
+            <button id="toggle" style="display: none;"></button>
+        </div>
 
         <div id="loading" style="display: none;">Loading...</div>
         <div class="weather-data"></div>
