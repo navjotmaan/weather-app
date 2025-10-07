@@ -2,6 +2,7 @@ const input = document.querySelector('#weather');
 const button = document.querySelector('button');
 const container = document.querySelector('.weather-data');
 const loading = document.querySelector('#loading');
+const toggle = document.querySelector('#toggle');
 
 const icons = {
     'rain': 'cloud-with-rain.png',
@@ -10,12 +11,15 @@ const icons = {
     'partly-cloudy-day': 'partly-cloudy-day.png'
 }
 
+let selectedData = [];
+let isCelsius = true;
+
 async function getWeatherData(place) {
     const location = input.value.trim();
     if (!location) return;
 
-    container.innerHTML = ''; // clear previous results
-    loading.style.display = 'block'; // 🔥 show loading
+    container.innerHTML = ''; 
+    loading.style.display = 'block'; 
 
     try {
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}?key=JA6Z2MJZXFLT6SJCCHDRUASRM`);
@@ -28,7 +32,7 @@ async function getWeatherData(place) {
 
         loading.style.display = 'none';
 
-        const selectedData = data.days.slice(0, 3)
+        selectedData = data.days.slice(0, 3)
             .map(day => ({
                 icon: day.icon,
                 date: day.datetime,
@@ -38,16 +42,14 @@ async function getWeatherData(place) {
                 latitude: data.latitude
         }));
 
-        console.log(selectedData);
-
-        selectedData.forEach(day => {
-            displayWeather(day);
-            console.log(day);
-        });
+        selectedData.forEach(day => displayWeather(day));
         
+        toggle.style.display = 'block';
+        toggle.textContent = '°F';
 
     } catch (error) {
         loading.style.display = 'none';
+        container.textContent = 'Error fetching weather data.';
         console.error('weather fetching:', error);
     }
 }
@@ -75,16 +77,43 @@ function displayWeather(day) {
     img.alt = 'weather icon';
 
     const des = document.createElement('p');
-    des.setAttribute('id', 'des');
+    des.id = 'des';
     des.textContent = day.description;
 
-    div.innerHTML = `
-                    <p>${day.date}</p>
-                    <p>Temperature: ${day.temp}°C
-                    <p>Longitude: ${day.longitude}</p>
-                    <p>Latitude: ${day.latitude}</p>`;
+    const dateP = document.createElement('p');
+    dateP.textContent = `Date: ${day.date}`;
 
-    div.prepend(img); 
-    div.prepend(des);             
+    const tempP = document.createElement('p');
+    tempP.classList.add('temp');
+    tempP.textContent = `Temperature: ${day.temp}°C`;
+
+    const lonP = document.createElement('p');
+    lonP.textContent = `Longitude: ${day.longitude}`;
+
+    const latP = document.createElement('p');
+    latP.textContent = `Latitude: ${day.latitude}`;
+
+    div.append(des, img, dateP, tempP, lonP, latP);
+
     container.appendChild(div);
 }
+
+toggle.addEventListener('click', () => {
+    if (selectedData.length === 0) return;
+
+    isCelsius = !isCelsius;
+
+    const tempElements = document.querySelectorAll('.temp');
+
+    tempElements.forEach((tempEl, index) => {
+        const day = selectedData[index];
+        if (isCelsius) {
+            tempEl.textContent = `Temperature: ${day.temp}°C`;
+        } else {
+            const fahrenheit = (day.temp * 9 / 5) + 32;
+            tempEl.textContent = `Temperature: ${fahrenheit.toFixed(1)}°F`;
+        }
+    });
+
+    toggle.textContent = isCelsius ? '°F' : '°C';
+});
