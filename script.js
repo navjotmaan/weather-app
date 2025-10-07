@@ -1,6 +1,7 @@
 const input = document.querySelector('#weather');
 const button = document.querySelector('button');
 const container = document.querySelector('.weather-data');
+const loading = document.querySelector('#loading');
 
 const icons = {
     'rain': 'cloud-with-rain.png',
@@ -10,6 +11,12 @@ const icons = {
 }
 
 async function getWeatherData(place) {
+    const location = input.value.trim();
+    if (!location) return;
+
+    container.innerHTML = ''; // clear previous results
+    loading.style.display = 'block'; // 🔥 show loading
+
     try {
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}?key=JA6Z2MJZXFLT6SJCCHDRUASRM`);
         
@@ -18,6 +25,8 @@ async function getWeatherData(place) {
         }
         
         const data = await response.json();
+
+        loading.style.display = 'none';
 
         const selectedData = data.days.slice(0, 3)
             .map(day => ({
@@ -38,6 +47,7 @@ async function getWeatherData(place) {
         
 
     } catch (error) {
+        loading.style.display = 'none';
         console.error('weather fetching:', error);
     }
 }
@@ -70,9 +80,9 @@ function displayWeather(day) {
 
     div.innerHTML = `
                     <p>${day.date}</p>
-                    <p>Temperature: ${day.temp}
+                    <p>Temperature: ${day.temp}°C
                     <p>Longitude: ${day.longitude}</p>
-                    <p>Latitide: ${day.latitude}</p>`;
+                    <p>Latitude: ${day.latitude}</p>`;
 
     div.prepend(img); 
     div.prepend(des);             
