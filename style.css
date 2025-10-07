@@ -40,7 +40,7 @@ form {
     padding: 20px 100px;
 }
 
-#weather, button {
+#weather, #search, #toggle {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 20px;
@@ -48,13 +48,13 @@ form {
     font-weight: bold;
 }
 
-button {
+#search, #toggle {
     background-color: #03045e;
     color: white;
     cursor: pointer;
 }
 
-button:hover {
+#search:hover, #toggle:hover{
     background-color: #0a0c93;
     transform: scale(1.05);
 }
@@ -76,4 +76,13 @@ button:hover {
     font-weight: bold;
     margin: 30px auto;
     color: #03045e;
+}
+
+.toggle-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+#toggle {
+    margin: 20px 0;
 }
