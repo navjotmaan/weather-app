@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+CU+Guides&family=Playwrite+NZ+Basic+Guides&family=Playwrite+NZ+Basic:wght@100..400&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+  font-family: "Nunito", sans-serif;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  background-color: #BFBFBF;
+  color: black;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+input, button {
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+}
+
+input {
+  min-width: 200px;
+}
+
+button {
+  border: 1px solid transparent;
+  background-color: #8AA6A3;
+  cursor: pointer;
+}
+
+

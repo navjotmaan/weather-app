@@ -1,0 +1,34 @@
+#root {
+  max-width: 1280px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.weather-area {
+  margin-top: 80px;
+}
+
+.weather-card {
+  background-color: #4C5958;
+  color: aliceblue;
+  width: 400px;
+  border-radius: 2em;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 50px;
+}
+
+.cards-area {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
