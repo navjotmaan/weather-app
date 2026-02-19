@@ -25,12 +25,12 @@ function App() {
           onChange={handleInputChange}
           placeholder="Enter location"
         />
-        <button onClick={fetchData}>Search</button>
+        <button onClick={fetchData}>Get</button>
       </div>
 
       <div>{weatherData}</div>
     </>
   )
-}
+};
 
 export default App;
