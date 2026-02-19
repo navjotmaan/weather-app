@@ -5,13 +5,18 @@
   line-height: 1.5;
 
   color-scheme: light dark;
-  background-color: #BFBFBF;
-  color: black;
+  background-color: #171940;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h2 {
+  text-align: left;
+  margin-left: 10rem;
+  margin-bottom: 50px;
 }
 
 body {
@@ -28,13 +33,22 @@ input, button {
 }
 
 input {
-  min-width: 200px;
+  min-width: 250px;
+  background: linear-gradient(to right, #0d1270 10%, #0F1359 80%);
+}
+
+input::placeholder {
+  color: rgb(195, 192, 192);
 }
 
 button {
   border: 1px solid transparent;
-  background-color: #8AA6A3;
+  background-color: #1848D9;
   cursor: pointer;
+  font-weight: 500;
 }
 
+button:hover {
+  background-color: #5576D9;
+}
 
