@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
 import { WeatherCard, HourlyForecast } from './Card';
 
+const key = import.meta.env.VITE_WEATHER_KEY;
+
 const Fetch = ({ place }) => {
     const [location, setLocation] = useState('');
     const [selectedData, setSelectedData] = useState([]);
 
     useEffect(() => {
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         const getData = async () => {
             try {
-                const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}?key=JA6Z2MJZXFLT6SJCCHDRUASRM`);
+                const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}?key=${key}`, { signal });
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -32,11 +38,20 @@ const Fetch = ({ place }) => {
                         })),
                 }));
                 setSelectedData(weather);
+
             } catch (err) {
-                console.error("Error fetching weather data", err);
+                if (err.name === 'AbortError') {
+                    console.log('Fetch aborted: moving on to the newer request');
+                } else {
+                    console.error("Error fetching weather data", err);
+                }
             }
         };
+
         getData();
+
+        return () => controller.abort();
+
     }, [place]);
 
     return (
