@@ -25,8 +25,8 @@ const WeatherCard = ({ day }) => {
     const temp = Math.round((day.temp - 32) * 5 / 9);
 
     return (
-        <div className="weather-card">
-            <div>
+        <div className="next-forecast">
+            <div className='weather-card'>
                 <p id='day'>{dayName}</p>
                 <p>{monthName}, {dayNum}</p>
             </div>
