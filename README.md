@@ -1,16 +1,33 @@
-# React + Vite
+# Weather App
+A weather application built with React that provides real-time weather data, 4-day forecasts, and location-based searches using the Visual Crossing API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- **Real-time Updates:** Fetches current temperature and show weather icon.
+- **Location Search:** Search for weather data by city name.
+- **Full today's weather:** Show each hours weather data of present day.
 
-Currently, two official plugins are available:
+## Getting started
+**Prerequisites**
+- npm or yarn
+- An API key from [visualcrossing](https://www.visualcrossing.com/weather-api/) (or whichever service you used).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Installation**
+1. Clone and install
+```
+git clone git@github.com:navjotmaan/weather-app.git
+cd weather-app
+npm install
+```
+2. Create an .env file in the root directory and add your API key:
+```
+VITE_WEATHER_KEY=your_api_key_here
+```
+3. Start the app
+```
+npm run dev
+```
 
-## React Compiler
+## Screenshots
+<img width="1897" height="854" alt="Screenshot (217)" src="https://github.com/user-attachments/assets/358ab799-95c4-470e-a875-1784ed78e629" />
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<img width="1894" height="880" alt="Screenshot (218)" src="https://github.com/user-attachments/assets/33cd4a1a-2315-4b93-9b0e-07a80be62974" />
