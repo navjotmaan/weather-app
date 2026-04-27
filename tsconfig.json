@@ -4,14 +4,17 @@
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
+    "allowJs": false,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "ESNext",
     "target": "esnext",
-    "types": [],
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client", "react", "react-dom"],
+
     // For nodejs:
-    // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
 
